@@ -55,10 +55,12 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_news) {
 
     private fun hideProgressbar() {
         //paginationProgressbar.visibility=View.INVISIBLE
+        Log.wtf("sdfsdfsd","dfdfdfdf")
     }
 
     private fun showProgressbar() {
         //paginationProgressbar.visibility=View.VISIBLE
+        Log.wtf("sdfsdfsd","dfdfdfdf")
     }
 
     private fun setupRecyclerView() {
