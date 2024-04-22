@@ -17,6 +17,9 @@
         android:theme="@style/Theme.MapBox"
         tools:targetApi="31">
         <activity
+            android:name=".GoogleMap.ui.MapMultiPointerActivity"
+            android:exported="false" />
+        <activity
             android:name=".MVVM_Login.ui.LoginActivity"
             android:exported="false" />
         <activity
