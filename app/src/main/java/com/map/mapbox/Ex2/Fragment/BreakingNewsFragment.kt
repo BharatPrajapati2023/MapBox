@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.map.mapbox.Ex2.Adapter.NewsAdapter
@@ -26,6 +27,15 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_news) {
         rvBreakingNews = view.findViewById(R.id.rvBreakingNews)
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_breakingNewsFragment_to_articleFragment, bundle
+            )
+        }
+
         viewModel.searchNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success -> {
@@ -55,12 +65,12 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_news) {
 
     private fun hideProgressbar() {
         //paginationProgressbar.visibility=View.INVISIBLE
-        Log.wtf("sdfsdfsd","dfdfdfdf")
+        Log.wtf("sdfsdfsd", "dfdfdfdf")
     }
 
     private fun showProgressbar() {
         //paginationProgressbar.visibility=View.VISIBLE
-        Log.wtf("sdfsdfsd","dfdfdfdf")
+        Log.wtf("sdfsdfsd", "dfdfdfdf")
     }
 
     private fun setupRecyclerView() {

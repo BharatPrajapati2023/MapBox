@@ -1,10 +1,16 @@
 package com.map.mapbox.Ex2.Fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.map.mapbox.Ex2.Adapter.NewsAdapter
+import com.map.mapbox.Ex2.Data.ViewModel.NewsViewModel
+import com.map.mapbox.Ex2.NewsActivity
 import com.map.mapbox.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,7 +27,9 @@ class SavedNewsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    lateinit var viewModel: NewsViewModel
+    lateinit var rvSavedNews: RecyclerView
+    lateinit var newsAdapter: NewsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,7 +43,20 @@ class SavedNewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_saved_news, container, false)
+
+        val view = inflater.inflate(R.layout.fragment_saved_news, container, false)
+        viewModel = (activity as NewsActivity).viewModel
+        newsAdapter = NewsAdapter()
+        setupRecyclerView()
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_savedNewsFragment_to_articleFragment, bundle
+            )
+        }
+        return view
     }
 
     companion object {
@@ -56,5 +77,15 @@ class SavedNewsFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    private fun setupRecyclerView() {
+        newsAdapter = NewsAdapter()
+        rvSavedNews.layoutManager = LinearLayoutManager(activity)
+        rvSavedNews.adapter = newsAdapter
+        /*rvBreakingNews.apply(
+            rvBreakingNews.adapter=newsAdapter
+                    la= LinearLayoutManager (activity)
+        )*/
     }
 }
