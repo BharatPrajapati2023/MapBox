@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- for ble example -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -21,8 +22,13 @@
         android:theme="@style/Theme.MapBox"
         tools:targetApi="31">
         <activity
+            android:name=".BLE_Example.ControlActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".BLE_Example.SelectDeviceActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".GoogleMap.ui.MapMultiPointerActivity"
             android:exported="false" />
