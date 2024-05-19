@@ -44,6 +44,9 @@ android {
         enable = true
     }
 
+    packagingOptions { resources.excludes.add("META-INF/*")
+        resources.excludes.add("kotlin/internal/internal.kotlin_builtins")
+    }
 }
 
 dependencies {
@@ -54,6 +57,8 @@ dependencies {
     implementation ("com.google.android.material:material:1.2.1")
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    //implementation(libs.compose.preview.renderer)
+    implementation(libs.firebase.storage.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -98,6 +103,6 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
 
     /*ble*/
-    implementation ("org.jetbrains.anko:anko:0.10.8")
+   // implementation ("org.jetbrains.anko:anko:0.10.8")
     implementation ("com.github.felHR85:UsbSerial:6.1.0")
 }
